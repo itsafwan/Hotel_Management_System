@@ -1,0 +1,24 @@
+sb kuch bana ke de rha hun files bana di hai ab navbar bana ke de rha hun aur home isko chalne se pehle isko install krna apne vs code mai terminal open krna phir wahan yeh past krna 
+
+
+npm install @mui/material @emotion/react @emotion/styled
+
+jb yeh download hoojaye phir yeh krna
+
+npm install @mui/icons-material
+
+uske baad yeh krna 
+
+npm install react-router-dom
+
+App run krne ke liye npm run dev isko run krne ke liye client ke folder ko open krna kaam kro toh srif client ka folder open krna bhar se hi open mat kr dena folder ke andar jana phir client folder ke anadr jana wahan right click kr ke vs code mai open krna
+
+pehle isko download krna npm install tailwindcss @tailwindcss/vite
+
+isko bhi download krna 
+
+npx shadcn@latest add "https://www.vengenceui.com/r/spotlight-navbar.json"
+
+aur isko bhi  
+
+npm install framer-motion clsx tailwind-merge
