@@ -22,3 +22,5 @@ npx shadcn@latest add "https://www.vengenceui.com/r/spotlight-navbar.json"
 aur isko bhi  
 
 npm install framer-motion clsx tailwind-merge
+
+phir bootstrap bhi krna npm install react-bootstrap bootstrap
