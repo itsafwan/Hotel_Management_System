@@ -1,10 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./features/landing/Pages/HomePage";
-
+import SignUp from "./features/auth/Singup";
+import SignIn from "./features/auth/Signin";
+import Home from "./features/landing/Pages/Home";
+import About from "./features/landing/Pages/About";
+import Gallery from "./features/landing/Pages/Gallery";
+import Contact from "./features/landing/Pages/Contact";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/Home" element={<Home />} />
+      <Route path="/About" element={<About />} />
+      <Route path="/Gallery" element={<Gallery />} />
+      <Route path="/Contact" element={<Contact />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
     </Routes>
   );
 }
