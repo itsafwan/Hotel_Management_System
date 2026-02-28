@@ -5,6 +5,7 @@ import Home from "./features/landing/Pages/Home";
 import About from "./features/landing/Pages/About";
 import Gallery from "./features/landing/Pages/Gallery";
 import Contact from "./features/landing/Pages/Contact";
+import Dashboard from "./features/admin/Dashboard";
 function App() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ function App() {
       <Route path="/Contact" element={<Contact />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
