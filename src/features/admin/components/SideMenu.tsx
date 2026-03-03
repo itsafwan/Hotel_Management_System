@@ -5,9 +5,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import SelectContent from './SelectContent';
 import MenuContent from './MenuContent';
-import CardAlert from './CardAlert';
 import OptionsMenu from './OptionsMenu';
 
 const drawerWidth = 240;
@@ -27,22 +25,27 @@ export default function SideMenu() {
   return (
     <Drawer
       variant="permanent"
-      sx={{
-        display: { xs: 'none', md: 'block' },
-        [`& .${drawerClasses.paper}`]: {
-          backgroundColor: 'background.paper',
-        },
+  sx={{
+    display: { xs: 'none', md: 'block' },
+    [`& .${drawerClasses.paper}`]: {
+      backgroundColor: '#0d0d0d', 
+      borderRight: '1px solid rgba(180, 144, 58, 0.2)', 
+    },
+  }}
+>
+  <Box sx={{ p: 3, textAlign: 'center' }}>
+    <Typography 
+      variant="h5" 
+      sx={{ 
+        fontWeight: 700,
+        color: '#b4903a', 
+        fontFamily: "'Cormorant Garamond', serif",
+        letterSpacing: 1,
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          mt: 'calc(var(--template-frame-height, 0px) + 4px)',
-          p: 1.5,
-        }}
-      >
-        <SelectContent />
-      </Box>
+      LUXURY STAY
+    </Typography>
+  </Box>
       <Divider />
       <Box
         sx={{
@@ -53,7 +56,7 @@ export default function SideMenu() {
         }}
       >
         <MenuContent />
-        <CardAlert />
+       
       </Box>
       <Stack
         direction="row"

@@ -4,12 +4,24 @@
 .navbar-custom-bg {
     background-color: #F7E7CE !important; 
     border-bottom: 2px solid #b48c50; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky !important;
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important; 
+    display: block !important;
 }
 
+
+
+.navbar-custom-bg .MuiButton-root, 
+.navbar-custom-bg a, 
 .navbar-custom-bg .nav-link {
-    color: #0d0d0d !important;
-    font-weight: 500;
+    color: #0d0d0d !important; 
+    z-index: 10001 !important;
+    position: relative;
+    pointer-events: auto !important; 
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .navbar-custom-bg .nav-link:hover {

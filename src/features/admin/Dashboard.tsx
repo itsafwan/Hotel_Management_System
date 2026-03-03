@@ -1,17 +1,13 @@
-// MUI X packages are not installed, commenting out type augmentations
-// import type {} from '@mui/x-date-pickers/themeAugmentation';
-// import type {} from '@mui/x-charts/themeAugmentation';
-// import type {} from '@mui/x-data-grid-pro/themeAugmentation';
-// import type {} from '@mui/x-tree-view/themeAugmentation';
 import { alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import AppNavbar from "./components/AppNavbar";
 import Header from "./components/Header";
-import MainGrid from "./components/MainGrid";
 import SideMenu from "./components/SideMenu";
 import AppTheme from "./theme/AppTheme";
+import { Outlet, useLocation } from 'react-router-dom'; // Outlet aur Location import kiya
+import MainGrid from "./components/MainGrid";
 import {
   chartsCustomizations,
   dataGridCustomizations,
@@ -27,6 +23,8 @@ const xThemeComponents = {
 };
 
 export default function Dashboard(props: { disableCustomTheme?: boolean }) {
+  const location = useLocation();
+
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
@@ -42,6 +40,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
               ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
               : alpha(theme.palette.background.default, 1),
             overflow: "auto",
+            height: '100vh',
           })}
         >
           <Stack
@@ -54,7 +53,11 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
             }}
           >
             <Header />
-            <MainGrid />
+            
+            {/* Logic: Agar sirf '/dashboard' par hain toh MainGrid dikhao, 
+                warna nested routes (like billing) ko Outlet mein dikhao */}
+            {location.pathname === '/dashboard' ? <MainGrid /> : <Outlet />}
+            
           </Stack>
         </Box>
       </Box>

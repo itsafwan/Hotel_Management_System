@@ -6,6 +6,8 @@ import About from "./features/landing/Pages/About";
 import Gallery from "./features/landing/Pages/Gallery";
 import Contact from "./features/landing/Pages/Contact";
 import Dashboard from "./features/admin/Dashboard";
+import BillingPage from "./features/admin/billing/BillingPage";
+import InvoiceForm from "./features/admin/billing/InvoiceForm";
 function App() {
   return (
     <Routes>
@@ -16,7 +18,11 @@ function App() {
       <Route path="/Contact" element={<Contact />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
+
+      <Route path="/dashboard" element={<Dashboard />}>
+      <Route path="billing" element={<BillingPage />} />
+      <Route path="billing/create" element={<InvoiceForm />} />
+</Route>
     </Routes>
   );
 }

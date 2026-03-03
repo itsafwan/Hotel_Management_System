@@ -1,28 +1,32 @@
-// Stub for PageViewsBarChart - @mui/x-charts not installed
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Chip from "@mui/material/Chip";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { BarChart } from '@mui/x-charts/BarChart';
 
 export default function PageViewsBarChart() {
   return (
-    <Card variant="outlined" sx={{ width: "100%" }}>
+    <Card variant="outlined" sx={{ width: '100%', height: '100%' }}>
       <CardContent>
-        <Typography component="h2" variant="subtitle2" gutterBottom>
-          Page views and downloads
+        <Typography component="h2" variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold' }}>
+          Occupancy by Room Type
         </Typography>
-        <Stack sx={{ justifyContent: "space-between" }}>
-          <Stack direction="row" sx={{ gap: 1 }}>
-            <Typography variant="h4" component="p">
-              1.3M
-            </Typography>
-            <Chip size="small" color="error" label="-8%" />
-          </Stack>
-          <Typography variant="body2">
-            Chart not available - @mui/x-charts not installed
-          </Typography>
-        </Stack>
+        <Box sx={{ width: '100%', height: 250 }}>
+          <BarChart
+            series={[
+              { data: [15, 20, 10], label: 'Booked', stack: 'total', color: '#0288d1' },
+              { data: [5, 2, 8], label: 'Available', stack: 'total', color: '#01579b' },
+            ]}
+            xAxis={[{ data: ['Standard', 'Deluxe', 'Suite'], scaleType: 'band' }]}
+            height={250}
+            margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+            // Ye hai Legend hide karne ka sab se solid tarika for TypeScript:
+            slots={{
+                legend: () => null,
+            }}
+          />
+        </Box>
       </CardContent>
     </Card>
   );

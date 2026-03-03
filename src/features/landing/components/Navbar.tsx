@@ -25,14 +25,14 @@ function ResponsiveAppBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link as={RouterLink} to="/Home" active className=" mt-1">
+            <Nav.Link as={RouterLink} to="/Home"  className=" mt-1">
               Home
             </Nav.Link>
           
             
-            <Nav.Link as={RouterLink} to="/About" active className=" mt-1 ">About</Nav.Link>
-            <Nav.Link as={RouterLink} to="/Gallery" active className=" mt-1 ">Gallery</Nav.Link>
-            <Nav.Link as={RouterLink} to="/Contact" active className=" mt-1 ">Contact</Nav.Link>
+            <Nav.Link as={RouterLink} to="/About"  className=" mt-1 ">About</Nav.Link>
+            <Nav.Link as={RouterLink} to="/Gallery"  className=" mt-1 ">Gallery</Nav.Link>
+            <Nav.Link as={RouterLink} to="/Contact"  className=" mt-1 ">Contact</Nav.Link>
           </Nav>
 
         
