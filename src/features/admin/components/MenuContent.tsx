@@ -17,10 +17,12 @@ import {
   CleaningServicesRounded as CleaningServicesIcon,
   BarChartRounded as BarChartIcon,
   MeetingRoomRounded as RoomIcon,
-  BookOnlineRounded as BookingIcon,
   ReceiptLongRounded as ReceiptIcon,
-  DashboardRounded as DashboardIcon 
+  DashboardRounded as DashboardIcon,
+  AddRounded as AddRoundedIcon, // Add icon yahan shamil kar diya
+  EventAvailableRounded as EventAvailableIcon, // Reservations ke liye behtar icon
 } from '@mui/icons-material';
+
 
 export default function MenuContent() {
   const navigate = useNavigate();
@@ -107,17 +109,48 @@ export default function MenuContent() {
           {openRooms ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
         </ListItemButton>
         <Collapse in={openRooms} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={childItemStyle} onClick={() => navigate('/rooms/reservations')}>
-              <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}><BookingIcon sx={{ fontSize: 16 }} /></ListItemIcon>
-              <ListItemText primary="Reservations" />
-            </ListItemButton>
-            <ListItemButton sx={childItemStyle}>
-              <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}><FactCheckRoundedIcon sx={{ fontSize: 16 }} /></ListItemIcon>
-              <ListItemText primary="Inventory" />
-            </ListItemButton>
-          </List>
-        </Collapse>
+  <List component="div" disablePadding>
+    {/* 1. Room Dashboard */}
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms')}>
+      <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
+        <DashboardIcon sx={{ fontSize: 16 }} />
+      </ListItemIcon>
+      <ListItemText primary="Room Dashboard" />
+    </ListItemButton>
+
+    {/* 2. Reservations */}
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/reservations')}>
+      <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
+        <EventAvailableIcon sx={{ fontSize: 16 }} />
+      </ListItemIcon>
+      <ListItemText primary="Reservations" />
+    </ListItemButton>
+
+    {/* 3. Inventory */}
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/inventory')}>
+      <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
+        <FactCheckRoundedIcon sx={{ fontSize: 16 }} />
+      </ListItemIcon>
+      <ListItemText primary="Room Inventory" />
+    </ListItemButton>
+
+    {/* 4. Add Rooms */}
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/rooms')}>
+      <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
+        <AddRoundedIcon sx={{ fontSize: 16 }} />
+      </ListItemIcon>
+      <ListItemText primary="Add Rooms" />
+    </ListItemButton>
+
+    {/* 5. Rooms List */}
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/list')}>
+      <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
+        <ListAltRoundedIcon sx={{ fontSize: 16 }} />
+      </ListItemIcon>
+      <ListItemText primary="Rooms List" />
+    </ListItemButton>
+  </List>
+</Collapse>
 
         {/* 4. GUEST PROFILES */}
         <ListItemButton onClick={() => setOpenGuest(!openGuest)} sx={mainItemStyle()}>

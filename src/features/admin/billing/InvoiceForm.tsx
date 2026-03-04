@@ -20,7 +20,7 @@ interface Invoice {
   room: string;
   date: string;
   amount: number;
-  status: InvoiceStatus;
+  status: string;
   staff?: string;
   idCard?: string;
   roomType?: RoomType;
@@ -47,7 +47,7 @@ export default function InvoiceForm() {
     staffName: '',
     totalPeople: 1,
     roomNumber: '',
-    roomType: 'Single',
+    roomType: 'Single' as RoomType,
     stayDays: 1,
     roomPrice: 0,
     extraService: '',
@@ -59,6 +59,10 @@ export default function InvoiceForm() {
   // Generate Invoice once
  React.useEffect(() => {
     if (isEditMode && editData) {
+      // Edit mode mein agar status cash/card hai toh dropdown mein 'Paid' dikhayen
+      const initialPaidStatus: InvoiceStatus = 
+        editData.status.toLowerCase() === 'pending' ? 'Pending' : 'Paid';
+
       setFormData({
         invoiceNumber: editData.id,
         guestName: editData.guest,
@@ -72,7 +76,7 @@ export default function InvoiceForm() {
         extraService: editData.extraService || '',
         servicePrice: editData.servicePrice || 0,
         paymentMethod: editData.paymentMethod || 'Cash',
-        isPaid: editData.status
+        isPaid: initialPaidStatus
       });
     } else {
       setFormData(prev => ({
@@ -89,24 +93,28 @@ export default function InvoiceForm() {
 
   const totalAmount = (Number(formData.roomPrice) * Number(formData.stayDays)) + Number(formData.servicePrice);
 
-  // 🚀 MAIN LOGIC
-  const handleFinalize = () => {
-    // Basic validation + Extra Service validation
-    if (!formData.guestName || !formData.roomNumber || !formData.extraService.trim()) {
-      alert("Please fill all fields, including Extra Services (write 'No Service' if none)!");
+// 🚀 Logic to determine status for Storage
+  const getFinalStatus = (): string => {
+    return formData.isPaid === 'Paid' 
+      ? formData.paymentMethod.toLowerCase() 
+      : 'pending';
+  };
+const handleFinalize = () => {
+    if (!formData.guestName || !formData.roomNumber) {
+      alert("Please fill required fields!");
       return;
     }
-    // Ek naya object banaya jo List grid mein jayega
+
     const newInvoice: Invoice = {
       id: formData.invoiceNumber,
       guest: formData.guestName,
       room: formData.roomNumber,
       date: new Date().toLocaleDateString(),
       amount: totalAmount,
-      status: formData.isPaid as InvoiceStatus,
+      status: getFinalStatus(), // No 'any' here
       staff: formData.staffName,
       idCard: formData.idCard,
-      roomType: 'Single' as RoomType,
+      roomType: formData.roomType,
       stayDays: formData.stayDays,
       totalPeople: formData.totalPeople,
       paymentMethod: formData.paymentMethod,
@@ -115,7 +123,6 @@ export default function InvoiceForm() {
       roomPrice: Number(formData.roomPrice)
     };
 
-    // 💾 LocalStorage mein save kar rahe hain taake dusre page (List) ko mil jaye
     const existingInvoices: Invoice[] = JSON.parse(localStorage.getItem('hotel_invoices') || '[]');
     localStorage.setItem('hotel_invoices', JSON.stringify([newInvoice, ...existingInvoices]));
     navigate('/dashboard/billing/list');
@@ -125,15 +132,16 @@ export default function InvoiceForm() {
     const savedData = localStorage.getItem('hotel_invoices');
     if (!savedData) return;
     const existingInvoices: Invoice[] = JSON.parse(savedData);
-    
-    const updatedInvoices = existingInvoices.map((inv) => 
+
+    const updatedInvoices = existingInvoices.map((inv): Invoice => 
       inv.id === formData.invoiceNumber 
         ? { 
             ...inv, 
             guest: formData.guestName, 
             room: formData.roomNumber, 
             amount: totalAmount, 
-            status: formData.isPaid,
+            status: getFinalStatus(), // No 'any' here
+            paymentMethod: formData.paymentMethod,
             staff: formData.staffName,
             idCard: formData.idCard,
             roomType: formData.roomType,
