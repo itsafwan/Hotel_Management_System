@@ -8,6 +8,7 @@ import Contact from "./features/landing/Pages/Contact";
 import Dashboard from "./features/admin/Dashboard";
 import BillingPage from "./features/admin/billing/BillingPage";
 import InvoiceForm from "./features/admin/billing/InvoiceForm";
+import InvoiceList from "./features/admin/billing/InvoiceList";
 function App() {
   return (
     <Routes>
@@ -22,7 +23,8 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />}>
       <Route path="billing" element={<BillingPage />} />
       <Route path="billing/create" element={<InvoiceForm />} />
-</Route>
+      <Route path="billing/list" element={<InvoiceList />} />
+      </Route>
     </Routes>
   );
 }
