@@ -135,7 +135,7 @@ export default function MenuContent() {
     </ListItemButton>
 
     {/* 4. Add Rooms */}
-    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/rooms')}>
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/addrooms')}>
       <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
         <AddRoundedIcon sx={{ fontSize: 16 }} />
       </ListItemIcon>
@@ -143,7 +143,7 @@ export default function MenuContent() {
     </ListItemButton>
 
     {/* 5. Rooms List */}
-    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/list')}>
+    <ListItemButton sx={childItemStyle} onClick={() => navigate('/dashboard/rooms/roomslist')}>
       <ListItemIcon sx={{ minWidth: 30, color: 'inherit' }}>
         <ListAltRoundedIcon sx={{ fontSize: 16 }} />
       </ListItemIcon>
